@@ -1,0 +1,11 @@
+---
+- name: Executing {{ kong_task }}
+  uri:
+    url: "{{ kong_admin_api_url }}/{{ kong_task }}/{{ kong_path }}"
+    method: "{{ kong_method }}"
+    body: "{{ item }}"
+    status_code: "{{ kong_status_code[kong_method] }}"
+    body_format: json
+  loop: "{{ kong_attributes }}"
+  vars:
+    kong_path: "{{ item.name | regex_replace('POST|GET', '') }}"

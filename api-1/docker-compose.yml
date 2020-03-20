@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  api:
+    image: node:13
+    container_name: api-1
+    build:
+      context: .
+    restart: on-failure
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/usr/src/app
+
+networks:
+  default:
+    external:
+      name: onsite-net
+

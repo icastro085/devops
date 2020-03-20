@@ -1,0 +1,3 @@
+kong_task: services
+kong_attributes: []
+kong_method: PUT

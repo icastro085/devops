@@ -1,0 +1,35 @@
+---
+- name: Kong Configuration
+  hosts: 'local'
+
+  roles:
+    - role: kong
+      kong_task: services
+      kong_attributes:
+        - name: api-service-1
+          url: http://api-1:3001
+
+        - name: api-service-2
+          url: http://api-2:3002
+
+    - role: kong
+      kong_task: routes
+      kong_attributes:
+        - name: api-route-1
+          service:
+            name: api-service-1
+          hosts:
+            - hello.com
+          paths:
+            - /api/v1
+
+        - name: api-route-2
+          service:
+            name: api-service-2
+          hosts:
+            - hello.com
+          paths:
+            - /api/v2
+
+# https://docs.konghq.com/2.0.x/admin-api/
+# https://github.com/wunzeco/ansible-kong

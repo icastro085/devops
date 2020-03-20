@@ -1,0 +1,7 @@
+kong_admin_api_url: http://localhost:8001
+kong_status_code:
+  POST: 201
+  GET: 200
+  PATH: 200
+  PUT: 200
+  DELETE: 204
