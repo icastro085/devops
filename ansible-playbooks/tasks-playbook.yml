@@ -1,0 +1,12 @@
+---
+- name: Echo Test
+  hosts: 'local'
+
+  tasks:
+    - name: Echo
+      shell: >
+        echo "Test task"
+      register: test1
+    - debug:
+        msg: "{{ test1 }}"
+

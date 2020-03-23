@@ -21,7 +21,7 @@
           hosts:
             - hello.com
           paths:
-            - /
+            - /v1
 
         - name: api-route-2
           service:
