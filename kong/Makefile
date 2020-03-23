@@ -17,7 +17,7 @@ build:
 
 .PHONY: start
 start:
-	docker-compose up
+	docker-compose up --force-recreate
 
 .PHONY: stop
 stop:

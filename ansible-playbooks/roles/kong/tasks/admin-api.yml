@@ -8,4 +8,15 @@
     body_format: json
   loop: "{{ kong_attributes }}"
   vars:
-    kong_path: "{{ item.name | regex_replace('POST|GET', '') }}"
+    kong_path: "{{ item.name | default(item.id) }}"
+  when: kong_method == "PUT" or kong_method == "DELETE"
+
+- name: Executing {{ kong_task }}
+  uri:
+    url: "{{ kong_admin_api_url }}/{{ kong_task }}"
+    method: "{{ kong_method }}"
+    body: "{{ item }}"
+    status_code: "{{ kong_status_code[kong_method] }}"
+    body_format: json
+  loop: "{{ kong_attributes }}"
+  when: kong_method == "POST" or kong_method == "GET"

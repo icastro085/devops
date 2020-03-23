@@ -21,7 +21,7 @@
           hosts:
             - hello.com
           paths:
-            - /api/v1
+            - /
 
         - name: api-route-2
           service:
@@ -29,7 +29,11 @@
           hosts:
             - hello.com
           paths:
-            - /api/v2
+            - /v2
+
+    - role: kong
+      kong_task: routes
+      kong_method: GET
 
 # https://docs.konghq.com/2.0.x/admin-api/
 # https://github.com/wunzeco/ansible-kong
